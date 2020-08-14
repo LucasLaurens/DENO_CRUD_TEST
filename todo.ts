@@ -26,3 +26,20 @@ export class TodoList extends Drash.Http.Resource {
     return this.response;
   }
 }
+
+export class TodoElement extends Drash.Http.Resource {
+  static paths = ["/todos/:id"];
+
+  public GET() {
+    const URL_param = this.request.getPathParam("id");
+    const t = todos.find((t) => t.id == URL_param);
+    if (!t) {
+      throw new Drash.Exceptions.HttpException(
+        404,
+        `Todo with id ${URL_param} not found`,
+      );
+    }
+    this.response.body = t;
+    return this.response;
+  }
+}
