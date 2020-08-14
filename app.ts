@@ -1,8 +1,10 @@
 import { Drash } from "https://deno.land/x/drash/mod.ts";
+import { TodoList } from "./todo.ts";
 
 // Instanciation
 const server = new Drash.Http.Server({
   response_output: "application/json",
+  resources: [TodoList],
   logger: new Drash.CoreLoggers.ConsoleLogger({
     enabled: true,
     level: "all",
